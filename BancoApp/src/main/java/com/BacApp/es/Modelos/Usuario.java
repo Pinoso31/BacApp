@@ -1,49 +1,48 @@
 package com.BacApp.es.Modelos;
 
+import com.BacApp.es.Modelos.CuentaBancaria;
+
 public class Usuario {
+
     private String usuario;
-    private String contraseña;
+    private String contrasena;
+    private String nombre;
+    private String apellido;
     private CuentaBancaria cuenta;
 
-    public Usuario(String usuario, String contraseña, String cuenta) {
+    public Usuario(String usuario, String contrasena, String nombre, String apellido, String numeroCuenta) {
         this.usuario = usuario;
-        this.contraseña = contraseña;
-        this.cuenta = cuenta;
+        this.contrasena = contrasena;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.cuenta = new CuentaBancaria(numeroCuenta);
     }
 
     public String getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
-    public String getContraseña() {
-        return contraseña;
-    }
-
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public String getContrasena() {
+        return contrasena;
     }
 
     public CuentaBancaria getCuenta() {
         return cuenta;
     }
 
-    public void setCuenta(CuentaBancaria cuenta) {
-        this.cuenta = cuenta;
+    public String getNombre() {
+        return nombre;
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder(" Usuario { ");
-        sb.append(" Usuario='").append(usuario).append('\n');
-        sb.append(" contraseña='").append(contraseña).append('\n');
-        sb.append(" Cuenta=").append(cuenta);
-        sb.append('}');
-        return sb.toString();
+    public String getApellido() {
+        return apellido;
     }
 
-
+    public boolean cambiarContrasena(String actual, String nueva) {
+        if (this.contrasena.equals(actual)) {
+            this.contrasena = nueva;
+            return true;
+        }
+        return false;
+    }
 }

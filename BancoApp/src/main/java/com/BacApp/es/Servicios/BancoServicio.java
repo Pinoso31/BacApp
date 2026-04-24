@@ -6,18 +6,29 @@ import java.util.Arrays;
 
 public class BancoServicio {
 
-    private ArrayList < Usuario > usuarios = new ArrayList<>();
-    public void registrarUsuario( String usuario, String contraseña, String Cuenta) {
-        usuarios.add(new Usuario(usuario, contraseña, Cuenta));
+    private ArrayList<Usuario> usuarios = new ArrayList<>();
+
+    // Registrar usuario
+    public boolean registrar(String usuario, String contrasena, String nombre, String apellido, String numeroCuenta) {
+
+        for (Usuario u : usuarios) {
+            if (u.getUsuario().equals(usuario)) {
+                System.out.println("El usuario ya existe.");
+                return false;
+            }
+        }
+
+        usuarios.add(new Usuario(usuario, contrasena, nombre, apellido, numeroCuenta));
+        return true;
     }
 
-    public Usuario login (String usuario, String contraseña) {
-        for ( Usuario u : usuarios) {
-            if ( u.getUsuario().equals(usuario) && u.getContraseña().equals(contraseña)) {
+    // Login
+    public Usuario iniciarSesion(String usuario, String contrasena) {
+        for (Usuario u : usuarios) {
+            if (u.getUsuario().equals(usuario) && u.getContrasena().equals(contrasena)) {
                 return u;
             }
         }
         return null;
     }
-
 }
